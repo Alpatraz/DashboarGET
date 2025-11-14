@@ -2,7 +2,8 @@
 
 import * as React from "react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
-import { X } from "lucide-react";
+// ⚠️ ON REMPLACE "X" PAR UNE ICÔNE QUI FONCTIONNE
+import { XCircle } from "lucide-react";
 
 export function Dialog({ children, ...props }) {
   return <DialogPrimitive.Root {...props}>{children}</DialogPrimitive.Root>;
@@ -21,8 +22,10 @@ export function DialogContent({ children, className = "", ...props }) {
         {...props}
       >
         {children}
+        
+        {/* BOUTON DE FERMETURE CORRIGÉ */}
         <DialogPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 hover:opacity-100">
-          <X className="h-4 w-4" />
+          <XCircle className="h-4 w-4" />
         </DialogPrimitive.Close>
       </DialogPrimitive.Content>
     </DialogPrimitive.Portal>

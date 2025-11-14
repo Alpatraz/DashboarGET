@@ -127,6 +127,7 @@ export default function App() {
         </div>
         <div className="text-sm text-gray-400">{currentTime.toLocaleTimeString()}</div>
       </div>
+      <h1 className="text-4xl font-bold text-red-600">Test Tailwind</h1>
 
       {nonOpenScenarios.length > 0 && (
         <div className="mb-6">
@@ -153,45 +154,69 @@ export default function App() {
                   </div>
                 </DialogTrigger>
                 <DialogContent>
-                  <DialogHeader>
-                    <DialogTitle>{scenario.name}</DialogTitle>
-                    <DialogDescription className="space-y-2">
-                      <p><strong>Centre :</strong> {scenario.center.name}</p>
-                      <p><strong>Statut :</strong> {scenario.status}</p>
-                      <Label>Motif</Label>
-                      <Textarea
-                        value={scenario.reason || ""}
-                        onChange={(e) => handleFieldChange(scenario.centerIndex, scenario.scenarioIndex, "reason", e.target.value)}
-                      />
-                      <Label>Début</Label>
-                      <Input
-                        type="datetime-local"
-                        value={scenario.start || ""}
-                        onChange={(e) => handleFieldChange(scenario.centerIndex, scenario.scenarioIndex, "start", e.target.value)}
-                      />
-                      <Label>Réouverture prévue</Label>
-                      <Input
-                        type="datetime-local"
-                        value={scenario.expectedReopen || ""}
-                        onChange={(e) => handleFieldChange(scenario.centerIndex, scenario.scenarioIndex, "expectedReopen", e.target.value)}
-                      />
-                      <p><strong>Difficulté :</strong> {scenario.difficulty}</p>
-                      <p><strong>Capacité :</strong> {scenario.capacity}</p>
-                      <p><strong>Versions :</strong> {scenario.versions?.join(", ")}</p>
-                      <div className="flex gap-2 mt-2">
-                        <Button onClick={() => updateScenarioStatus(scenario.centerIndex, scenario.scenarioIndex, "Ouvert")}>
-                          Réouverture
-                        </Button>
-                        <Button onClick={() => updateScenarioStatus(scenario.centerIndex, scenario.scenarioIndex, "Fermé")}>
-                          Fermeture
-                        </Button>
-                        <Button onClick={() => updateScenarioStatus(scenario.centerIndex, scenario.scenarioIndex, "Maintenance")}>
-                          Maintenance
-                        </Button>
-                      </div>
-                    </DialogDescription>
-                  </DialogHeader>
-                </DialogContent>
+  <DialogHeader>
+    <DialogTitle>{scenario.name}</DialogTitle>
+
+    {/* IMPORTANT : on ne met plus rien dans DialogDescription */}
+    <div className="space-y-2 text-sm text-gray-700">
+
+      <p><strong>Centre :</strong> {scenario.center.name}</p>
+      <p><strong>Statut :</strong> {scenario.status}</p>
+
+      <Label>Motif</Label>
+      <Textarea
+        value={scenario.reason || ""}
+        onChange={(e) =>
+          handleFieldChange(scenario.centerIndex, scenario.scenarioIndex, "reason", e.target.value)
+        }
+      />
+
+      <Label>Début</Label>
+      <Input
+        type="datetime-local"
+        value={scenario.start || ""}
+        onChange={(e) =>
+          handleFieldChange(scenario.centerIndex, scenario.scenarioIndex, "start", e.target.value)
+        }
+      />
+
+      <Label>Réouverture prévue</Label>
+      <Input
+        type="datetime-local"
+        value={scenario.expectedReopen || ""}
+        onChange={(e) =>
+          handleFieldChange(
+            scenario.centerIndex,
+            scenario.scenarioIndex,
+            "expectedReopen",
+            e.target.value
+          )
+        }
+      />
+
+      <p><strong>Difficulté :</strong> {scenario.difficulty}</p>
+      <p><strong>Capacité :</strong> {scenario.capacity}</p>
+      <p><strong>Versions :</strong> {scenario.versions?.join(", ")}</p>
+
+      <div className="flex gap-2 mt-2">
+        <Button onClick={() => updateScenarioStatus(scenario.centerIndex, scenario.scenarioIndex, "Ouvert")}>
+          Réouverture
+        </Button>
+
+        <Button onClick={() => updateScenarioStatus(scenario.centerIndex, scenario.scenarioIndex, "Fermé")}>
+          Fermeture
+        </Button>
+
+        <Button
+          onClick={() => updateScenarioStatus(scenario.centerIndex, scenario.scenarioIndex, "Maintenance")}
+        >
+          Maintenance
+        </Button>
+      </div>
+    </div>
+  </DialogHeader>
+</DialogContent>
+
               </Dialog>
             ))}
           </div>
@@ -225,43 +250,59 @@ export default function App() {
                       </div>
                     </DialogTrigger>
                     <DialogContent>
-                      <DialogHeader>
-                        <DialogTitle>Détails de la salle</DialogTitle>
-                        <DialogDescription className="space-y-2">
-                          <p><strong>Scénario :</strong> {scenario.name}</p>
-                          <p><strong>Centre :</strong> {center.name}</p>
-                          <p><strong>Statut :</strong> {scenario.status}</p>
-                          <Label>Motif</Label>
-                          <Textarea
-                            value={scenario.reason || ""}
-                            onChange={(e) => handleFieldChange(centerIndex, scenarioIndex, "reason", e.target.value)}
-                          />
-                          <Label>Début</Label>
-                          <Input
-                            type="datetime-local"
-                            value={scenario.start || ""}
-                            onChange={(e) => handleFieldChange(centerIndex, scenarioIndex, "start", e.target.value)}
-                          />
-                          <Label>Réouverture prévue</Label>
-                          <Input
-                            type="datetime-local"
-                            value={scenario.expectedReopen || ""}
-                            onChange={(e) => handleFieldChange(centerIndex, scenarioIndex, "expectedReopen", e.target.value)}
-                          />
-                          <p><strong>Difficulté :</strong> {scenario.difficulty}</p>
-                          <p><strong>Capacité :</strong> {scenario.capacity}</p>
-                          <p><strong>Versions :</strong> {scenario.versions?.join(", ")}</p>
-                          <div className="flex gap-2 mt-2">
-                            <Button onClick={() => updateScenarioStatus(centerIndex, scenarioIndex, "Fermé")}>
-                              Incident
-                            </Button>
-                            <Button onClick={() => updateScenarioStatus(centerIndex, scenarioIndex, "Maintenance")}>
-                              Maintenance
-                            </Button>
-                          </div>
-                        </DialogDescription>
-                      </DialogHeader>
-                    </DialogContent>
+  <DialogHeader>
+    <DialogTitle>Détails de la salle</DialogTitle>
+
+    {/* Remplacement de DialogDescription */}
+    <div className="space-y-2 text-sm text-gray-700">
+
+      <p><strong>Scénario :</strong> {scenario.name}</p>
+      <p><strong>Centre :</strong> {center.name}</p>
+      <p><strong>Statut :</strong> {scenario.status}</p>
+
+      <Label>Motif</Label>
+      <Textarea
+        value={scenario.reason || ""}
+        onChange={(e) =>
+          handleFieldChange(centerIndex, scenarioIndex, "reason", e.target.value)
+        }
+      />
+
+      <Label>Début</Label>
+      <Input
+        type="datetime-local"
+        value={scenario.start || ""}
+        onChange={(e) =>
+          handleFieldChange(centerIndex, scenarioIndex, "start", e.target.value)
+        }
+      />
+
+      <Label>Réouverture prévue</Label>
+      <Input
+        type="datetime-local"
+        value={scenario.expectedReopen || ""}
+        onChange={(e) =>
+          handleFieldChange(centerIndex, scenarioIndex, "expectedReopen", e.target.value)
+        }
+      />
+
+      <p><strong>Difficulté :</strong> {scenario.difficulty}</p>
+      <p><strong>Capacité :</strong> {scenario.capacity}</p>
+      <p><strong>Versions :</strong> {scenario.versions?.join(", ")}</p>
+
+      <div className="flex gap-2 mt-2">
+        <Button onClick={() => updateScenarioStatus(centerIndex, scenarioIndex, "Fermé")}>
+          Incident
+        </Button>
+
+        <Button onClick={() => updateScenarioStatus(centerIndex, scenarioIndex, "Maintenance")}>
+          Maintenance
+        </Button>
+      </div>
+    </div>
+  </DialogHeader>
+</DialogContent>
+
                   </Dialog>
                 ))}
             </div>
